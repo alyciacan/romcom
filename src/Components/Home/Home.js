@@ -26,6 +26,7 @@ const Home = () => {
         setNeedNew(true)
     };
 
+
     return (
     <section className="home">
         <p>This is the home page.</p>

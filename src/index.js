@@ -4,10 +4,13 @@ import './index.css';
 import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { SavedCoversProvider } from './Contexts/SavedCoversContext';
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <SavedCoversProvider>
+            <App />
+        </SavedCoversProvider>
     </BrowserRouter>, 
     document.getElementById("root")
 );
