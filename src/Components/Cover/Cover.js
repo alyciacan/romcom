@@ -1,21 +1,20 @@
 import './Cover.css';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { SavedCoversContext } from '../../Contexts/SavedCoversContext';
+import overlay from '../assets/details/overlay.png';
 
 
  
 const Cover = ({ currentCover }) => {
-    const { savedCovers, setSavedCovers } = useContext(SavedCoversContext);
+    const { save } = useContext(SavedCoversContext);
 
-    const save = (coverObj) => {
-        setSavedCovers([...savedCovers, coverObj])
-    };
-    
     return (
         <article className="cover">
-            <img src={ currentCover.image } />
-            <h2>{ currentCover.title }</h2>
-            <h3>{ `A tale of ${ currentCover.adjectives[0]} and ${currentCover.adjectives[1]}`}</h3>
+            <img src={ currentCover.image } className="cover-img" />
+            <img src={ overlay } className="overlay" />
+            <h2 className="cover-title">{ currentCover.title }</h2>
+            <div className="cover-sent-background"></div>
+            <h3 className="cover-sent">{ `A tale of ${ currentCover.dramaticNouns[0]} and ${currentCover.dramaticNouns[1]}`}</h3>
             <button onClick={ () => save(currentCover) }>Save this poster</button>
         </article>
     )

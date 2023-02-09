@@ -5,16 +5,24 @@ import { SavedCoversContext } from '../../Contexts/SavedCoversContext';
 
 const Saved = () => {
     const { savedCovers, setSavedCovers } = useContext(SavedCoversContext)
-    console.log(savedCovers)
+
     const covers = savedCovers.map(coverObj => {
         return (
-            <figure key={ Date.now() }>
-                <img src={ coverObj.image } />
+            <figure key={ coverObj.id }>
+                <img src={ coverObj.image } className="cover-img-small"/>
                 <h4>{ coverObj.title }</h4>
-                <h5>{ `A tale of ${ coverObj.adjectives[0]} and ${coverObj.adjectives[1]}`}</h5>
+                <h5>{ `A tale of ${ coverObj.dramaticNouns[0]} and ${coverObj.dramaticNouns[1]}`}</h5>
+                <p type="button" onClick={ () => deleteCover(coverObj.id) }>🗑️</p>
             </figure>
         )
     })
+
+    const deleteCover = (id) => {
+        let coverToDelete = savedCovers.find(cover => cover.id === id);
+        const copy = [...savedCovers];
+        copy.splice(copy.indexOf(coverToDelete), 1);
+        setSavedCovers(copy);
+    };
 
     return (
         <section className="saved-container">
